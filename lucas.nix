@@ -16,7 +16,7 @@
     klavaro
     minetest
     openttd
-    nerdfonts
+    (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
   ];
 
   programs.git = {
