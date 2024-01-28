@@ -17,6 +17,7 @@
       obs-studio-plugins.obs-transition-table
       obs-studio-plugins.obs-freeze-filter
       obs-studio-plugins.obs-gradient-source
+      obs-studio-plugins.wlrobs
     ];
   };
 
