@@ -96,8 +96,7 @@
       };
 
       shell = {
-        args = ["-l" "-c" "tmux"];
-        program = "zsh";
+        program = "tmux";
       };
 
     };
