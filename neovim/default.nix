@@ -71,7 +71,7 @@
 
       -- make search case sensitive only if search apttern contains an upper case
       -- letter
-      vim.opt.ignorecase = true
+      vim.opt.ignorecase = false
       vim.opt.smartcase = true
 
       -- allow hidden buffer

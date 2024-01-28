@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   imports = [
+    ./dev-tools
     ./alacritty
     ./fzf
     ./obs
