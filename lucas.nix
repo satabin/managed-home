@@ -2,12 +2,12 @@
   imports = [
     ./alacritty
     ./fzf
-    ./neovim
     ./obs
     ./starship
     ./tmux
     ./zoxide
     ./zsh
+    ./neovim
   ];
   home.stateVersion = "22.11";
 
