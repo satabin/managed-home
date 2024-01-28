@@ -6,6 +6,7 @@
     keyMode = "vi";
     customPaneNavigationAndResize = true;
     mouse = true;
+    escapeTime = 0;
 
     terminal = "screen-256color";
 
