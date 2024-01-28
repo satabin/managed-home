@@ -4,8 +4,8 @@
     enable = true;
     clock24 = true;
     keyMode = "vi";
+    customPaneNavigationAndResize = true;
     mouse = true;
-    newSession = true;
 
     terminal = "screen-256color";
 
@@ -25,7 +25,6 @@
     '';
 
     plugins = with pkgs; [
-      tmuxPlugins.sensible
       tmuxPlugins.nord
     ];
 
