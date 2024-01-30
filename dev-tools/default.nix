@@ -13,4 +13,10 @@
     texlab
   ];
 
+  programs.git = {
+    enable = true;
+    userName = "Lucas Satabin";
+    userEmail = "lucas.satabin@gnieh.org";
+  };
+
 }
