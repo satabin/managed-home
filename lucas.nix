@@ -11,6 +11,7 @@
     ./educational
     ./fzf
     ./gaming
+    ./gpg
     ./obs
     ./starship
     ./tmux
