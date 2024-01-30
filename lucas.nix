@@ -1,23 +1,22 @@
 { pkgs, ... }: {
+  home.stateVersion = "22.11";
+
+  home.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
+  ];
+
   imports = [
-    ./dev-tools
     ./alacritty
+    ./dev-tools
+    ./educational
     ./fzf
+    ./gaming
     ./obs
     ./starship
     ./tmux
     ./zoxide
     ./zsh
     ./neovim
-  ];
-  home.stateVersion = "22.11";
-
-  home.packages = with pkgs; [
-    dosbox
-    klavaro
-    minetest
-    openttd
-    (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
   ];
 
 }
