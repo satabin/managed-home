@@ -1,8 +1,10 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   home.stateVersion = "22.11";
+  home.username = "lucas";
+  home.homeDirectory = "/home/lucas";
 
   home.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
+    (nerdfonts.override {fonts = ["SourceCodePro"];})
   ];
 
   imports = [
@@ -19,5 +21,4 @@
     ./zsh
     ./neovim
   ];
-
 }

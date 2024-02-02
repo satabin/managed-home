@@ -1,0 +1,12 @@
+{
+    "options": {
+        "enable": true,
+        "target": {
+            "args": [
+                "--expr",
+                "(import <home-manager/modules> { configuration = ./lucas.nix; pkgs = import <nixpkgs> {}; }).options"
+            ],
+            "installable": ""
+        }
+    }
+}
