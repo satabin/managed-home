@@ -1,5 +1,4 @@
-{ pkgs, ... }: {
-
+{pkgs, ...}: {
   programs.obs-studio = {
     enable = true;
 
@@ -20,5 +19,4 @@
       obs-studio-plugins.wlrobs
     ];
   };
-
 }

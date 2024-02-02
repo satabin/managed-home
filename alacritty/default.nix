@@ -1,14 +1,11 @@
-{ ... }:
-  let
-    sauceCodePro = "SauceCodePro Nerd Font Mono";
-  in {
-
+{...}: let
+  sauceCodePro = "SauceCodePro Nerd Font Mono";
+in {
   programs.alacritty = {
     enable = true;
 
     settings = {
       colors = {
-
         bright = {
           black = "#4c566a";
           blue = "#81a1c1";
@@ -67,7 +64,6 @@
           cursor = "#d8dee9";
           text = "#2e3440";
         };
-
       };
 
       font = {
@@ -92,14 +88,11 @@
           family = sauceCodePro;
           style = "Regular";
         };
-
       };
 
       shell = {
         program = "tmux";
       };
-
     };
   };
-
 }

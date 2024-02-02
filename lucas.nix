@@ -9,6 +9,7 @@
 
   imports = [
     ./alacritty
+    ./cli-tools
     ./dev-tools
     ./educational
     ./fzf

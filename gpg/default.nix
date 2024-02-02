@@ -1,5 +1,4 @@
-{ pkgs, ... }: {
-
+{pkgs, ...}: {
   programs.gpg = {
     enable = true;
     mutableKeys = true;
@@ -19,5 +18,4 @@
     maxCacheTtl = 120;
     pinentryFlavor = "gnome3";
   };
-
 }

@@ -1,12 +1,14 @@
-{ pkgs, ... }: {
-
+{pkgs, ...}: {
   programs.neovim = {
     plugins = with pkgs.vimPlugins; [
       lsp_lines-nvim
     ];
-    extraLuaConfig = /* lua */ ''
-      require("lsp_lines").setup()
-    '';
+    extraLuaConfig =
+      /*
+      lua
+      */
+      ''
+        require("lsp_lines").setup()
+      '';
   };
-
 }

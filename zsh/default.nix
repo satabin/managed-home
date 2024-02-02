@@ -1,5 +1,4 @@
-{ ... }: {
-
+{...}: {
   programs.zsh = {
     enable = true;
 
@@ -18,11 +17,11 @@
     };
 
     shellAliases = {
-      ls="ls --color=auto";
-      ll="ls -l";
-      llh="ls -lh";
-      la="ls -A";
-      git="LANG=C git";
+      ls = "ls --color=auto";
+      ll = "ls -l";
+      llh = "ls -lh";
+      la = "ls -A";
+      git = "LANG=C git";
     };
 
     completionInit = "autoload -Uz compinit && compinit";
@@ -50,7 +49,5 @@
       zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
       zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
     '';
-
   };
-
 }

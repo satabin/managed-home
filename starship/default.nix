@@ -1,5 +1,4 @@
-{ lib, ... }: {
-
+{lib, ...}: {
   programs.starship = {
     enable = true;
 
@@ -50,8 +49,6 @@
       };
 
       kubernetes.disabled = false;
-
     };
   };
-
 }
