@@ -11,6 +11,7 @@
     scala-cli
     taplo
     texlab
+    texliveFull
   ];
 
   programs.git = {
