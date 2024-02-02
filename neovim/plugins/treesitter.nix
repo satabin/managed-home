@@ -1,4 +1,7 @@
-{ pkgs, ... }: {
+{ config, pkgs, ... }:
+let
+  parsers_dir = "${config.xdg.dataHome}/treesitter/parsers";
+in {
 
   programs.neovim = {
     plugins = with pkgs.vimPlugins; [
@@ -19,9 +22,11 @@
       ))
     ];
     extraLuaConfig = /* lua */ ''
+      vim.opt.runtimepath:append("${parsers_dir}")
       require('nvim-treesitter.configs').setup {
         sync_install = false,
         auto_install = false,
+        parser_install_dir = "${parsers_dir}",
         highlight = {
           enable = true,
           additional_vim_regex_highlighting = true,
