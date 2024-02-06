@@ -7,6 +7,7 @@
     [
       alejandra
       async-profiler
+      coq
       coursier
       dhall-lsp-server
       jdk21
