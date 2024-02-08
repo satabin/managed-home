@@ -1,4 +1,6 @@
-{pkgs, ...}: {
+{pkgs, callPackage, ...}: let
+  waveform = ./waveform.nix;
+in {
   programs.obs-studio = {
     enable = true;
 
@@ -17,6 +19,14 @@
       obs-studio-plugins.obs-freeze-filter
       obs-studio-plugins.obs-gradient-source
       obs-studio-plugins.wlrobs
+      (obs-studio-plugins.waveform.overrideAttrs (attrs: {
+        postFixup = ''
+          mkdir -p $out/lib $out/share/obs/obs-plugins
+          mv $out/waveform/bin/64bit $out/lib/obs-plugins
+          mv $out/waveform/data $out/share/obs/obs-plugins/waveform
+          rm -rf $out/waveform
+        '';
+      }))
     ];
   };
 }
