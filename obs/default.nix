@@ -1,6 +1,4 @@
-{pkgs, callPackage, ...}: let
-  waveform = ./waveform.nix;
-in {
+{pkgs, callPackage, ...}: {
   programs.obs-studio = {
     enable = true;
 
