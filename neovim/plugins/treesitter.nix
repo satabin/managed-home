@@ -36,7 +36,7 @@ in {
           parser_install_dir = "${parsers_dir}",
           highlight = {
             enable = true,
-            additional_vim_regex_highlighting = true,
+            --additional_vim_regex_highlighting = true,
           },
           indent = {
             enable = true
