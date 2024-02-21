@@ -15,6 +15,7 @@
     ./fzf
     ./gaming
     ./gpg
+    ./music
     ./obs
     ./starship
     ./tmux
