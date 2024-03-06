@@ -9,7 +9,7 @@
   };
 
   services.gpg-agent = {
-    enable = true;
+    enable = pkgs.stdenv.isLinux;
     enableScDaemon = true;
     enableSshSupport = true;
     enableZshIntegration = true;
@@ -18,4 +18,5 @@
     maxCacheTtl = 120;
     pinentryFlavor = "gnome3";
   };
+
 }
