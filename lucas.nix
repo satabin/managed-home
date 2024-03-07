@@ -11,6 +11,7 @@
     ./alacritty
     ./cli-tools
     ./dev-tools
+    ./direnv
     ./educational
     ./fzf
     ./gaming
