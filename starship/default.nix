@@ -8,7 +8,6 @@
         "$username"
         "$hostname"
         "$directory"
-        "$nix_shell"
         "$git_branch"
         "$git_commit"
         "$git_state"
