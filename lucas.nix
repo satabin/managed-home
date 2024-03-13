@@ -7,6 +7,10 @@
     (nerdfonts.override {fonts = ["SourceCodePro"];})
   ];
 
+  home.sessionVariables = {
+    LC_ALL = "en_US.UTF-8";
+  };
+
   imports = [
     ./alacritty
     ./cli-tools
