@@ -26,7 +26,11 @@
           metals.setup_dap()
         end
 
-        metals_config.init_options.statusBarProvider = "off"
+        metals_config.init_options = {
+          statusBarProvider = "off",
+          icons = "unicode",
+          disableColorOutput = false,
+        }
 
         metals_config.settings = {
           showImplicitArguments = true,

@@ -1,8 +1,16 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  fromGithub = import ../../utils/fromGithub.nix;
+in {
   programs.neovim = {
     plugins = with pkgs.vimPlugins; [
       nvim-dap
       nvim-dap-ui
+      (fromGithub {
+        owner = "chrisbra";
+        repo = "Colorizer";
+        rev = "7db0e0dd8adfccab35655f5b6db805caa0fef49a";
+        hash = "sha256-mY+p8qDnUffyVHycdH/AkuQygHcf2bfvC3COCE3vqA0=";
+      })
     ];
     extraLuaConfig =
       /*
@@ -74,6 +82,17 @@
             },
           },
         }
+
+        vim.api.nvim_create_autocmd({"FileType", "BufLeave", "CursorMoved", "TextChanged"}, {
+          desc = "Force colorize on dap-repl",
+          pattern = "*",
+          group = vim.api.nvim_create_augroup("auto_colorize", { clear = true }),
+          callback = function()
+            if vim.o.filetype == "dap-repl" then
+              vim.cmd { cmd = "ColorHighlight", bang = true }
+            end
+          end,
+        })
       '';
   };
 }
