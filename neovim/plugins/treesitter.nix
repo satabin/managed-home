@@ -15,6 +15,7 @@ in {
             json
             lua
             markdown
+            markdown_inline
             nix
             ruby
             rust

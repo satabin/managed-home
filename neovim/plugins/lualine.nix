@@ -31,6 +31,7 @@ in {
           sections = {
             ...,
             lualine_c = {
+              'filename',
               require('lsp-progress').progress,
             },
           },

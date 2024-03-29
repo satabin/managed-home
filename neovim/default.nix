@@ -4,7 +4,6 @@
     ./plugins/coqtail.nix
     ./plugins/dap.nix
     ./plugins/devicons.nix
-    ./plugins/lsp-lines.nix
     ./plugins/lspconfig.nix
     ./plugins/lualine.nix
     ./plugins/metals.nix
