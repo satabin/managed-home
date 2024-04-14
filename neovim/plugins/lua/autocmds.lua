@@ -31,7 +31,7 @@ local function set_lsp_keymaps(bufnr)
   map("n", "<space>j", "<cmd>lua vim.diagnostic.goto_prev { wrap = true }<CR>")
   map("n", "<space>k", "<cmd>lua vim.diagnostic.goto_next { wrap = true }<CR>")
   map("n", "<leader>e", "<cmd> lua vim.diagnostic.open_float(nil, { focusable = false })<CR>")
-  map("n", "<leader>tv", '<cmd>Lspsaga outline<CR>')
+  vim.cmd([[command! Outline :Lspsaga outline]])
 
   vim.cmd([[command! Reformat :lua vim.lsp.buf.format { async = true }]])
   vim.cmd([[command! Action :lua vim.lsp.buf.code_action()]])

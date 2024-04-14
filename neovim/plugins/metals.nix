@@ -18,6 +18,8 @@
         vim.keymap.set("v", "K", [[<Esc><cmd>lua require"metals".type_of_range()<CR>]], opts)
         vim.keymap.set("n", "<leader>ws", '<cmd>lua require"metals".hover_worksheet()<CR>', opts)
         cmd([[command OR :MetalsOrganizeImports]])
+        cmd([[command Reveal :lua require("metals.tvp").reveal_in_tree()]])
+        cmd([[command Treeview :lua require("metals.tvp").toggle_tree_view()]])
 
         metals_config.capabilities = handlers.capabilities
 
