@@ -6,10 +6,10 @@ in {
       nvim-dap
       nvim-dap-ui
       (fromGithub {
-        owner = "chrisbra";
-        repo = "Colorizer";
-        rev = "7db0e0dd8adfccab35655f5b6db805caa0fef49a";
-        hash = "sha256-mY+p8qDnUffyVHycdH/AkuQygHcf2bfvC3COCE3vqA0=";
+        owner = "m00qek";
+        repo = "baleia.nvim";
+        rev = "main";
+        hash = "sha256-0NmiGzMFvL1awYOVtiaSd+O4sAR524x68xwWLgArlqs=";
       })
     ];
     extraLuaConfig =
@@ -83,14 +83,13 @@ in {
           },
         }
 
-        vim.api.nvim_create_autocmd({"FileType", "BufLeave", "CursorMoved", "TextChanged"}, {
+        vim.api.nvim_create_autocmd("FileType", {
           desc = "Force colorize on dap-repl",
-          pattern = "*",
+          pattern = "dap-repl",
           group = vim.api.nvim_create_augroup("auto_colorize", { clear = true }),
           callback = function()
-            if vim.o.filetype == "dap-repl" then
-              vim.cmd { cmd = "ColorHighlight", bang = true }
-            end
+            local baleia = require('baleia').setup()
+            baleia.automatically(vim.fn.bufnr('%'))
           end,
         })
       '';
