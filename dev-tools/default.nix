@@ -10,6 +10,7 @@
       coq
       coursier
       dhall-lsp-server
+      gh
       jdk21
       lua-language-server
       nixd
