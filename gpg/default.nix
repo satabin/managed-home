@@ -16,7 +16,6 @@
 
     defaultCacheTtl = 60;
     maxCacheTtl = 120;
-    pinentryFlavor = "gnome3";
   };
 
 }
