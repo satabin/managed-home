@@ -14,6 +14,7 @@
       jdk21
       lua-language-server
       nixd
+      nixpkgs-fmt
       rustup
       sbt
       scala-cli
@@ -24,6 +25,7 @@
     ]
     ++ lib.lists.optionals pkgs.stdenv.isLinux [
       meld
+      rx
     ];
 
   programs.git = {
