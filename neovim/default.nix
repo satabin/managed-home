@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   imports = [
     ./plugins/cmp.nix
     ./plugins/coqtail.nix
@@ -37,6 +37,11 @@
       vim-numbertoggle
       plenary-nvim
       fzf-vim
+    ];
+
+    extraLuaPackages = luaPkgs: with luaPkgs; [
+      lua-utils-nvim
+      pathlib-nvim
     ];
 
     extraLuaConfig =
