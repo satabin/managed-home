@@ -1,10 +1,17 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+let
+  nixvim = import (builtins.fetchGit {
+    url = "https://github.com/nix-community/nixvim";
+    ref = "nixos-24.05";
+  });
+in
+{
   home.stateVersion = "22.11";
   home.username = "lucas";
   home.homeDirectory = "/home/lucas";
 
   home.packages = with pkgs; [
-    (nerdfonts.override {fonts = ["SourceCodePro"];})
+    (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
   ];
 
   home.sessionVariables = {
@@ -12,6 +19,7 @@
   };
 
   imports = [
+    nixvim.homeManagerModules.nixvim
     ./alacritty
     ./cli-tools
     ./dev-tools

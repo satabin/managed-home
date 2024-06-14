@@ -1,110 +1,165 @@
-{pkgs, ...}: {
-  programs.neovim = {
-    plugins = with pkgs.vimPlugins; [
-      nvim-lspconfig
-      neodev-nvim
-      lspsaga-nvim
+let
+  options = { noremap = true; silent = true; };
+in
+{
+  programs.nixvim = {
+    plugins = {
+      lsp = {
+        enable = true;
+
+        servers = {
+          taplo.enable = true;
+          texlab.enable = true;
+          nixd.enable = true;
+          dhall-lsp-server.enable = true;
+        };
+      };
+
+      lspsaga = {
+        enable = true;
+        lightbulb.enable = false;
+      };
+    };
+
+    keymaps = [
+      {
+        mode = [ "n" "t" ];
+        key = "<space>t";
+        action = "<cmd>Lspsaga term_toggle<CR>";
+        options = options // { desc = "Toggle floating terminal"; };
+      }
     ];
-    extraLuaConfig =
-      /*
-      lua
-      */
-      ''
-        require("neodev").setup {
-          library = { plugins = { "nvim-dap-ui" }, types = true },
+
+    keymapsOnEvents = {
+      LspAttach = [
+        {
+          mode = "n";
+          key = "<space>j";
+          action = ''<cmd>lua vim.diagnostic.goto_prev { wrap = true }<CR>'';
+          options = options // { desc = "Goto previous diagnostic"; };
         }
-
-        local handlers = require("lsp.handlers")
-        handlers.setup()
-        require("lsp.autocmds")
-
-        require('lspsaga').setup {
-          lightbulb = {
-            enable = false,
-          },
+        {
+          mode = "n";
+          key = "<space>k";
+          action = ''<cmd>lua vim.diagnostic.goto_next { wrap = true }<CR>'';
+          options = options // { desc = "Goto next diagnostic"; };
         }
-
-        -- global
-        vim.opt_global.completeopt = { "menu", "noinsert", "noselect" }
-
-        require('lspconfig')['lua_ls'].setup {
-          server = {
-            capabilities = handlers.capabilities,
-            on_attach = function(client, bufnr)
-              handlers.on_attach(client, bufnr)
-            end
-          },
-          on_init = function(client)
-            local path = client.workspace_folders[1].name
-            if not vim.loop.fs_stat(path..'/.luarc.json') and not vim.loop.fs_stat(path..'/.luarc.jsonc') then
-              client.config.settings = vim.tbl_deep_extend('force', client.config.settings, {
-                Lua = {
-                  runtime = {
-                    -- Tell the language server which version of Lua you're using
-                    -- (most likely LuaJIT in the case of Neovim)
-                    version = 'LuaJIT'
-                  },
-                  -- Make the server aware of Neovim runtime files
-                  workspace = {
-                    checkThirdParty = false,
-                    library = {
-                      vim.env.VIMRUNTIME
-                    }
-                    -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-                    -- library = vim.api.nvim_get_runtime_file("", true)
-                  }
-                }
-              })
-
-              client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
-            end
-            return true
-          end
+        {
+          mode = "n";
+          key = "<leader>e";
+          action = ''<cmd>lua vim.diagnostic.open_float(nil, { focusable = false })<CR>'';
+          options = options // { desc = "Open diagnostic in floating window"; };
         }
-
-        -- toml
-        require 'lspconfig'.taplo.setup {
-          server = {
-            capabilities = handlers.capabilities,
-            on_attach = function(client, bufnr)
-              handlers.on_attach(client, bufnr)
-            end
-          },
+        {
+          mode = "n";
+          key = "gd";
+          action = ''<cmd>lua require("telescope.builtin").lsp_definitions({initial_mode='normal'})<CR>'';
+          options = options // { desc = "Goto definition"; };
         }
-
-        -- tex
-        require('lspconfig')['texlab'].setup {
-          server = {
-            capabilities = handlers.capabilities,
-            on_attach = function(client, bufnr)
-              handlers.on_attach(client, bufnr)
-            end
-          }
+        {
+          mode = "n";
+          key = "gy";
+          action = ''<cmd>lua require("telescope.builtin").lsp_type_definitions({initial_mode='normal'})<CR>'';
+          options = options // { desc = "Goto type definition"; };
         }
-
-        -- nix
-        require('lspconfig')['nixd'].setup {
-          server = {
-            capabilities = handlers.capabilities,
-            on_attach = function(client, bufnr)
-              handlers.on_attach(client, bufnr)
-            end
-          }
+        {
+          mode = "n";
+          key = "vgd";
+          action = ''<cmd>lua require("telescope.builtin").lsp_definitions({initial_mode='normal', jump_type='vsplit'})<CR>'';
+          options = options // { desc = "Goto definition (vertical split)"; };
         }
-
-        -- dhall
-        require('lspconfig')['dhall_lsp_server'].setup {
-          server = {
-            capabilities = handlers.capabilities,
-            on_attach = function(client, bufnr)
-              handlers.on_attach(client, bufnr)
-            end
-          }
+        {
+          mode = "n";
+          key = "sgd";
+          action = ''<cmd>lua require("telescope.builtin").lsp_definitions({initial_mode='normal', jump_type='split'})<CR>'';
+          options = options // { desc = "Goto definition (split)"; };
         }
+        {
+          mode = "n";
+          key = "K";
+          action = ''<cmd>lua vim.lsp.buf.hover()<CR>'';
+          options = options // { desc = "Show hover information"; };
+        }
+        {
+          mode = "n";
+          key = "gi";
+          action = ''<cmd>lua require("telescope.builtin").lsp_implementations({initial_mode='normal'})<CR>'';
+          options = options // { desc = "Find implementations"; };
+        }
+        {
+          mode = "n";
+          key = "gr";
+          action = ''<cmd>lua require('telescope.builtin').lsp_references({initial_mode='normal'})<CR>'';
+          options = options // { desc = "Find references"; };
+        }
+        {
+          mode = "n";
+          key = "<space>o";
+          action = ''<cmd>lua require("telescope.builtin").lsp_document_symbols()<CR>'';
+          options = options // { desc = "Show document symbols"; };
+        }
+        {
+          mode = "n";
+          key = "<space>s";
+          action = ''<cmd>lua require("telescope.builtin").lsp_dynamic_workspace_symbols()<CR>'';
+          options = options // { desc = "Show workspace symbols"; };
+        }
+        {
+          mode = "n";
+          key = "gs";
+          action = ''<cmd>lua vim.lsp.codelens.run()<CR>'';
+          options = options // { desc = "Run"; };
+        }
+        {
+          mode = "n";
+          key = "<leader>sh";
+          action = ''<cmd>lua vim.lsp.buf.signature_help()<CR>'';
+          options = options // { desc = "Signature help"; };
+        }
+        {
+          mode = "n";
+          key = "<leader>rn";
+          action = ''<cmd>Lspsaga rename<CR>'';
+          options = options // { desc = "Rename symbol"; };
+        }
+        {
+          mode = "n";
+          key = "<leader>f";
+          action = ''<cmd>lua vim.lsp.buf.format { async = true }<CR>'';
+          options = options // { desc = "Reformat"; };
+        }
+        {
+          mode = "n";
+          key = "<leader>ca";
+          action = ''<cmd>lua vim.lsp.buf.code_action()<CR>'';
+          options = options // { desc = "Code action"; };
+        }
+        {
+          mode = "n";
+          key = "<space>a";
+          action = ''<cmd>lua require("telescope.builtin").diagnostics({layout_strategy='vertical', initial_mode='normal'})<CR>'';
+          options = options // { desc = "Show workspace diagnostics"; };
+        }
+        {
+          mode = "n";
+          key = "<space>d";
+          action = ''<cmd>lua require("telescope.builtin").diagnostics({layout_strategy='vertical', bufnr=0, initial_mode='normal'})<CR>'';
+          options = options // { desc = "Show buffer diagnostics"; };
+        }
+      ];
+    };
 
-      '';
+    userCommands = {
+      Actions.command = "lua vim.lsp.buf.code_action()";
+
+      Outline.command = "Lspsaga outline";
+
+      Reformat.command = "lua vim.lsp.buf.format { async = true }";
+
+      Terminal.command = "Lspsaga term_toggle";
+
+    };
+
   };
 
-  xdg.configFile."nvim/lua/lsp/handlers.lua".source = ./lua/handlers.lua;
-  xdg.configFile."nvim/lua/lsp/autocmds.lua".source = ./lua/autocmds.lua;
 }

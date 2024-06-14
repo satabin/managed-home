@@ -1,53 +1,76 @@
-{pkgs, ...}: {
-  programs.neovim = {
-    plugins = with pkgs.vimPlugins; [
-      nvim-metals
+{ pkgs, ... }:
+let
+  options = { noremap = true; silent = true; };
+in
+{
+  programs.nixvim = {
+    extraPlugins = [
+      pkgs.vimPlugins.nvim-metals
     ];
-    extraLuaConfig =
-      /*
-      lua
-      */
-      ''
-        local opts = { noremap = true, silent = true }
-        local api = vim.api
-        local cmd = vim.cmd
-        local metals = require("metals")
-        local metals_config = metals.bare_config()
-        local handlers = require("lsp.handlers")
 
-        vim.keymap.set("v", "K", [[<Esc><cmd>lua require"metals".type_of_range()<CR>]], opts)
-        vim.keymap.set("n", "<leader>ws", '<cmd>lua require"metals".hover_worksheet()<CR>', opts)
-        cmd([[command OR :MetalsOrganizeImports]])
-        cmd([[command Reveal :lua require("metals.tvp").reveal_in_tree()]])
-        cmd([[command Treeview :lua require("metals.tvp").toggle_tree_view()]])
-
-        metals_config.capabilities = handlers.capabilities
-
-        metals_config.on_attach = function(client, bufnr)
-          handlers.on_attach(client, bufnr)
-          metals.setup_dap()
-        end
-
-        metals_config.init_options = {
-          statusBarProvider = "off",
-          icons = "unicode",
-          disableColorOutput = false,
+    keymapsOnEvents = {
+      LspAttach = [
+        {
+          mode = "v";
+          key = "K";
+          action = ''<cmd>lua require('metals').type_of_range()<CR>'';
+          options = options // { desc = "Show type"; };
         }
+      ];
+    };
 
-        metals_config.settings = {
-          showImplicitArguments = true,
-          showImplicitConversionsAndClasses = true,
-          showInferredType = true,
-        }
+    userCommands = {
+      OR.command = "MetalsOrganizeImports";
 
-        local nvim_metals_group = api.nvim_create_augroup("nvim-metals", { clear = true })
-        api.nvim_create_autocmd("FileType", {
-          pattern = { "scala", "sbt", "java" },
-          callback = function()
-            require("metals").initialize_or_attach(metals_config)
-          end,
-          group = nvim_metals_group,
-        })
-      '';
+      Reveal.command = "lua require('metals.tvp').reveal_in_tree()";
+
+      Treeview.command = "lua require('metals.tvp').toggle_tree_view()";
+    };
+
+    autoGroups = {
+      nvim-metals = {
+        clear = true;
+      };
+    };
+
+    autoCmd = [
+      {
+        event = "FileType";
+        pattern = [ "scala" "sbt" "java" ];
+        callback = {
+          __raw = /*lua */''
+            function()
+              local opts = { noremap = true, silent = true }
+              local api = vim.api
+              local cmd = vim.cmd
+              local metals = require("metals")
+              local metals_config = metals.bare_config()
+
+              local capabilities = vim.lsp.protocol.make_client_capabilities()
+              local cmp_nvim_lsp = require("cmp_nvim_lsp")
+              metals_config.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+
+              metals_config.on_attach = function(client, bufnr)
+                metals.setup_dap()
+              end
+
+              metals_config.init_options = {
+                statusBarProvider = "off",
+                icons = "unicode",
+                disableColorOutput = false,
+              }
+
+              metals_config.settings = {
+                showImplicitArguments = true,
+                showImplicitConversionsAndClasses = true,
+                showInferredType = true,
+              }
+              require("metals").initialize_or_attach(metals_config)
+            end
+          '';
+        };
+        group = "nvim-metals";
+      }
+    ];
   };
 }

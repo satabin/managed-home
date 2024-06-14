@@ -1,9 +1,9 @@
-{pkgs, ...}: {
-  programs.neovim = {
-    plugins = with pkgs.vimPlugins; [
+{ pkgs, ... }: {
+  programs.nixvim = {
+    extraPlugins = with pkgs.vimPlugins; [
       nvim-web-devicons
     ];
-    extraLuaConfig =
+    extraConfigLua =
       /*
       lua
       */
