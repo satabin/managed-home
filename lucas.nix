@@ -35,5 +35,6 @@ in
     ./zoxide
     ./zsh
     ./neovim
+    ./taskwarrior
   ];
 }
