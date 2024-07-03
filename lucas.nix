@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 let
   nixvim = import (builtins.fetchGit {
     url = "https://github.com/nix-community/nixvim";
@@ -16,6 +16,11 @@ in
 
   home.sessionVariables = {
     LC_ALL = "en_US.UTF-8";
+  };
+
+  sops = {
+    age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
+    defaultSopsFile = ./secrets/tools.yaml;
   };
 
   imports = [

@@ -1,0 +1,11 @@
+keys:
+- &home age17jx59v2kqh3ka326c993ekf7qyma6807jlmhry6ee2ndd7jcq5nskngpuy
+- &work age1wuz5eveg3586vx27r5g5mgseka4p2yrr93a3j6fv7m68gql5qqnqcxgrhz
+
+creation_rules:
+- path_regex: secrets/[\w-]+\.yaml$
+  key_groups:
+  - age:
+    - *home
+    - *work
+    
