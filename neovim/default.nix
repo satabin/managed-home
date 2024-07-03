@@ -28,6 +28,7 @@
       vimtex.enable = true;
       gitgutter.enable = true;
       surround.enable = true;
+      neogit.enable = true;
     };
 
     extraPlugins = with pkgs.vimPlugins; [
