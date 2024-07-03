@@ -45,7 +45,7 @@ in
       {
         mode = "n";
         key = "<leader>si";
-        action = "<cmd>lua require('telescope').extensions.scaladex.scaladex.search";
+        action = "<cmd>lua require('telescope').extensions.scaladex.scaladex.search()<CR>";
         options = options;
       }
     ];
