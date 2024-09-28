@@ -2,21 +2,24 @@
   programs.nixvim = {
     plugins.lualine = {
       enable = true;
-      iconsEnabled = true;
-      theme = "nord";
 
-      sections.lualine_c = [
-        "filename"
-        {
-          name = {
+      settings = {
+        options = {
+          icons_enabled = true;
+          theme = "nord";
+        };
+        sections.lualine_c = [
+          "filename"
+          {
             __raw = /*lua*/''
               function()
                 return require('lsp-progress').progress()
               end
             '';
-          };
-        }
-      ];
+          }
+        ];
+      };
+
     };
 
     extraPlugins = [

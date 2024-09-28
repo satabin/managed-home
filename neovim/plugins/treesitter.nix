@@ -7,24 +7,26 @@ in
     plugins.treesitter = {
       enable = true;
 
-      ensureInstalled = [
-        "hocon"
-        "java"
-        "json"
-        "lua"
-        "markdown"
-        "markdown_inline"
-        "nix"
-        "ruby"
-        "rust"
-        "scala"
-        "toml"
-        "yaml"
-      ];
+      settings = {
+        ensure_installed = [
+          "hocon"
+          "java"
+          "json"
+          "lua"
+          "markdown"
+          "markdown_inline"
+          "nix"
+          "ruby"
+          "rust"
+          "scala"
+          "toml"
+          "yaml"
+        ];
 
-      parserInstallDir = "${parsers_dir}";
+        parser_install_dir = "${parsers_dir}";
 
-      indent = true;
+        indent.enable = true;
+      };
 
     };
 

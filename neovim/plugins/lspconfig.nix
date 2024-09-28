@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  helpers = config.nixvim.helpers;
+  helpers = config.lib.nixvim;
   options = { noremap = true; silent = true; };
   signs = [
     {

@@ -27,8 +27,9 @@
       fugitive.enable = true;
       vimtex.enable = true;
       gitgutter.enable = true;
-      surround.enable = true;
+      vim-surround.enable = true;
       neogit.enable = true;
+      web-devicons.enable = true;
     };
 
     extraPlugins = with pkgs.vimPlugins; [
