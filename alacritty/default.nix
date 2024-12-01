@@ -90,7 +90,7 @@ in {
         };
       };
 
-      shell = {
+      terminal.shell = {
         program = "tmux";
       };
     };
