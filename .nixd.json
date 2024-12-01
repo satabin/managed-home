@@ -1,6 +1,6 @@
 {
     "formatting": {
-      "command": "alejandra"
+      "command": "nixpkgs-fmt"
     },
     "options": {
         "enable": true,

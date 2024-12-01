@@ -1,7 +1,7 @@
-{
-  lib,
-  pkgs,
-  ...
+{ isDesktop
+, lib
+, pkgs
+, ...
 }: {
   home.packages = with pkgs;
     [
@@ -23,7 +23,7 @@
       texliveFull
       tree-sitter
     ]
-    ++ lib.lists.optionals pkgs.stdenv.isLinux [
+    ++ lib.lists.optionals (pkgs.stdenv.isLinux && isDesktop) [
       meld
       rx
     ];

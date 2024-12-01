@@ -48,8 +48,11 @@ in
         servers = {
           taplo.enable = true;
           texlab.enable = true;
-          nixd.enable = true;
-          dhall-lsp-server.enable = true;
+          nixd = {
+            enable = true;
+            settings.formatting.command = [ "nixpkgs-fmt" ];
+          };
+          dhall_lsp_server.enable = true;
         };
       };
 

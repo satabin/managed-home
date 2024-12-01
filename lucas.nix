@@ -17,6 +17,12 @@
     defaultSopsFile = ./secrets/tools.yaml;
   };
 
+
+  _module.args = {
+    isDesktop = true;
+    isWork = false;
+  };
+
   imports = [
     ./alacritty
     ./cli-tools

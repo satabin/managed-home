@@ -1,4 +1,4 @@
-{pkgs, callPackage, ...}: {
+{isDesktop, isWork, lib, pkgs, ...}: lib.mkIf (isDesktop && !isWork) {
   programs.obs-studio = {
     enable = true;
 
@@ -13,7 +13,7 @@
       obs-studio-plugins.obs-text-pthread
       obs-studio-plugins.obs-move-transition
       obs-studio-plugins.advanced-scene-switcher
-      obs-studio-plugins.obs-transition-table
+      #obs-studio-plugins.obs-transition-table
       obs-studio-plugins.obs-freeze-filter
       obs-studio-plugins.obs-gradient-source
       obs-studio-plugins.wlrobs
