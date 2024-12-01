@@ -8,7 +8,7 @@
     ./plugins/lualine.nix
     ./plugins/metals.nix
     ./plugins/nord.nix
-    ./plugins/rust-tools.nix
+    ./plugins/rustaceanvim.nix
     ./plugins/telescope.nix
     ./plugins/treesitter.nix
   ];
