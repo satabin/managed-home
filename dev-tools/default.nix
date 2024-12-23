@@ -33,5 +33,18 @@
     enable = true;
     userName = "Lucas Satabin";
     userEmail = "lucas.satabin@gnieh.org";
+    aliases = {
+      purge-gone = "!git branch -vv | rg '\\[origin/.*: gone\\]' | awk '{print $1}' | xargs -r git branch -d";
+      purge-force-gone = "!git branch -vv | rg '\\[origin/.*: gone\\]' | awk '{print $1}' | xargs -r git branch -D";
+      ls-gone = "!git branch -vv | rg '\\[origin/.*: gone\\]' | awk '{print $1}'";
+    };
+    delta = {
+      enable = true;
+      options = {
+        syntax-theme = "Nord";
+        theme = "Nord";
+        side-by-side = true;
+      };
+    };
   };
 }
