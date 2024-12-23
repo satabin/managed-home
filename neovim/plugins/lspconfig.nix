@@ -198,7 +198,7 @@ in
         {
           mode = "n";
           key = "<space>a";
-          action = ''<cmd>lua require("telescope.builtin").diagnostics({layout_strategy='vertical', initial_mode='normal'})<CR>'';
+          action = ''<cmd>lua require("telescope.builtin").diagnostics({layout_strategy='vertical', initial_mode='normal', sort_by='severity'})<CR>'';
           options = options // { desc = "Show workspace diagnostics"; };
         }
         {
