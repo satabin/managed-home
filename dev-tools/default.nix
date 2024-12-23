@@ -14,7 +14,7 @@
       jdk21
       lua-language-server
       nixd
-      nixpkgs-fmt
+      nixfmt-rfc-style
       rustup
       sbt
       scala-cli
