@@ -22,6 +22,7 @@
       texlab
       texliveFull
       tree-sitter
+      vifm
     ]
     ++ lib.lists.optionals (pkgs.stdenv.isLinux && isDesktop) [
       meld
