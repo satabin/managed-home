@@ -8,10 +8,6 @@
     (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
   ];
 
-  home.sessionVariables = {
-    LC_ALL = "en_US.UTF-8";
-  };
-
   sops = {
     age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
     defaultSopsFile = ./secrets/tools.yaml;
