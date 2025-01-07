@@ -28,6 +28,7 @@
     ./fzf
     ./gaming
     ./gpg
+    ./graphic
     ./music
     ./obs
     ./starship

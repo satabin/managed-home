@@ -26,7 +26,6 @@
     ]
     ++ lib.lists.optionals (pkgs.stdenv.isLinux && isDesktop) [
       meld
-      rx
     ];
 
   programs.git = {
