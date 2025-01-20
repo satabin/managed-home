@@ -10,12 +10,18 @@
       coq
       coursier
       dhall-lsp-server
+      (fenix.stable.withComponents [
+        "cargo"
+        "clippy"
+        "rustc"
+        "rustfmt"
+      ])
       gh
       jdk21
       lua-language-server
       nixd
       nixfmt-rfc-style
-      rustup
+      pkg-config
       sbt
       scala-cli
       taplo
