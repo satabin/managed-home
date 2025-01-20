@@ -1,4 +1,5 @@
 { isDesktop
+, isWork
 , lib
 , pkgs
 , ...
@@ -31,7 +32,10 @@
       vifm
     ]
     ++ lib.lists.optionals (pkgs.stdenv.isLinux && isDesktop) [
+      bitwarden-desktop
       meld
+    ] ++ lib.lists.optionals (!isWork) [
+      bitwarden-cli
     ];
 
   programs.git = {
