@@ -1,4 +1,5 @@
-{ isDesktop
+{ config
+, isDesktop
 , isWork
 , lib
 , pkgs
@@ -34,9 +35,24 @@
     ++ lib.lists.optionals (pkgs.stdenv.isLinux && isDesktop) [
       bitwarden-desktop
       meld
+      rmview
     ] ++ lib.lists.optionals (!isWork) [
       bitwarden-cli
     ];
+
+  xdg.configFile."rmview.json".text = builtins.toJSON {
+    ssh = {
+      address = [
+        "remarkable"
+      ];
+      auth_metod = "key";
+      key = "${config.home.homeDirectory}/.ssh/id_rsa";
+    };
+    orientation = "auto";
+    pen_size = 15;
+    pen_color = "red";
+    pen_trail = 200;
+  };
 
   programs.git = {
     enable = true;
