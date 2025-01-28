@@ -30,6 +30,7 @@
           ['@lsp.type.macro'] = '@macro',
           ['@lsp.type.decorator'] = '@function',
           ['LspCodeLens'] = '@comment',
+          ['LspInlayHint'] = '@comment',
         }
         for newgroup, oldgroup in pairs(links) do
           vim.api.nvim_set_hl(0, newgroup, { link = oldgroup, default = true })

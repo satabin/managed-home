@@ -44,6 +44,7 @@ in
     plugins = {
       lsp = {
         enable = true;
+        inlayHints = true;
 
         servers = {
           taplo.enable = true;
