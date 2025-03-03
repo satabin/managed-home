@@ -9,6 +9,7 @@
     inkscape
     krita
     pixelorama
+    qgis
     rx
   ];
 }
