@@ -54,6 +54,7 @@ in
             settings.formatting.command = [ "nixpkgs-fmt" ];
           };
           dhall_lsp_server.enable = true;
+          tailwindcss.enable = true;
         };
       };
 
