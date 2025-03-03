@@ -28,7 +28,7 @@
       scala-cli
       taplo
       texlab
-      texliveFull
+      texliveMedium
       tree-sitter
       vifm
     ]
