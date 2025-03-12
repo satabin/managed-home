@@ -8,8 +8,6 @@ in
   programs.nixvim = {
     plugins.dap = {
       enable = true;
-      extensions.dap-ui.enable = true;
-      extensions.dap-virtual-text.enable = true;
 
       signs = {
         dapBreakpoint.text = "󰉀";
@@ -41,6 +39,8 @@ in
       };
     };
 
+    plugins.dap-ui.enable = true;
+    plugins.dap-virtual-text.enable = true;
     plugins.cmp-dap.enable = true;
     plugins.baleia.enable = true; # colorize terminal output
 

@@ -60,6 +60,7 @@ in
           rev = "75a8157e85381eb736a7d92acae5000394f41040";
           hash = "sha256-Zy/4OI31woNnsVxc4yBYmEPooK1qJ02YrdMiM9Y+tSA=";
         };
+        doCheck = false;
       })
       pkgs.vimPlugins.todo-comments-nvim
     ];

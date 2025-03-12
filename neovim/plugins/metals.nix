@@ -5,17 +5,7 @@ in
 {
   programs.nixvim = {
     extraPlugins = [
-      (pkgs.vimUtils.buildVimPlugin {
-        pname = "nvim-metals";
-        version = "2024-12-16";
-        src = pkgs.fetchFromGitHub {
-          owner = "scalameta";
-          repo = "nvim-metals";
-          rev = "abf4a2b7ccdb2fa21ef59b66e50d9b69a746e3ef";
-          sha256 = "sha256-Uwjd5mfosoOlnjENwA27jygamaI8tXhxESbgQjckY2c=";
-        };
-        meta.homepage = "https://github.com/scalameta/nvim-metals/";
-      })
+      pkgs.vimPlugins.nvim-metals
     ];
 
     keymapsOnEvents = {

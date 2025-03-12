@@ -1,6 +1,8 @@
-{...}: let
-  sauceCodePro = "SauceCodePro Nerd Font Mono";
-in {
+{ ... }:
+let
+  sauceCodePro = "SauceCodePro NFM";
+in
+{
   programs.alacritty = {
     enable = true;
 
