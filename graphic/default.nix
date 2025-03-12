@@ -8,6 +8,7 @@
     })
     inkscape
     krita
+    libreoffice
     pixelorama
     qgis
     rx
