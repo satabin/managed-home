@@ -8,6 +8,7 @@
     ./plugins/lualine.nix
     ./plugins/metals.nix
     ./plugins/nord.nix
+    ./plugins/rainbow-csv.nix
     ./plugins/rustaceanvim.nix
     ./plugins/telescope.nix
     ./plugins/treesitter.nix
