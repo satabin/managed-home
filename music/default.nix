@@ -2,13 +2,11 @@
   home.packages = with pkgs; [
     ardour
     calf
+    gnome-podcasts
     helm
     lmms
     lsp-plugins
-    mixxx
-    musescore
     noise-repellent
-    sonic-pi
     tap-plugins
     wolf-shaper
   ];
