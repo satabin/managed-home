@@ -18,6 +18,7 @@
       obs-studio-plugins.obs-gradient-source
       obs-studio-plugins.wlrobs
       obs-studio-plugins.waveform
+      obs-studio-plugins.obs-webkitgtk
     ];
   };
 }
