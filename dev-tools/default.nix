@@ -71,5 +71,15 @@
         side-by-side = true;
       };
     };
+    extraConfig ={
+      init = {
+        defaultBranch = "main";
+      };
+      mergetool = {
+        keepBackup = false;
+        keepTemporaries = false;
+      };
+    };
   };
+
 }
