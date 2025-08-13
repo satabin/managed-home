@@ -7,12 +7,12 @@ in
     extraPlugins = [
       (pkgs.vimUtils.buildVimPlugin {
         pname = "nvim-metals";
-        version = "2025-04-18";
+        version = "2025-08-06";
         src = pkgs.fetchFromGitHub {
           owner = "scalameta";
           repo = "nvim-metals";
-          rev = "04d8ce24638412a2c93dd79fecca4b2c7b9c07f9";
-          sha256 = "sha256-qVH9jaWn09tTlgy23Jl4c7PkI2dFvMarbLSMaIt1raY=";
+          rev = "db6c9ffb32ec698b96d11cba1317dccc26f5c16d";
+          sha256 = "sha256-fdnaUX3iU4PjfW43ow9xES8WnUdxShExkvvZj/fNdCg=";
         };
         doCheck = false;
         meta.homepage = "https://github.com/scalameta/nvim-metals/";
@@ -61,7 +61,7 @@ in
               metals_config.capabilities.inlayHintProvider = true
 
               metals_config.on_attach = function(client, bufnr)
-                _M.lspOnAttach(client, bufnr)
+                --_M.lspOnAttach(client, bufnr)
                 metals.setup_dap()
               end
 
@@ -76,6 +76,8 @@ in
                   hintsInPatternMatch = { enable = true },
                   typeParameters = { enable = true },
                   inferredTypes = { enable = true },
+                  namedParameters = { enable = true },
+                  byNameParameters = { enable = true },
                 },
               }
               require("metals").initialize_or_attach(metals_config)
