@@ -1,45 +1,31 @@
-{ config, ... }:
 let
-  helpers = config.lib.nixvim;
   options = { noremap = true; silent = true; };
-  signs = [
-    {
-      name = "DiagnosticSignError";
-      text = "";
-    }
-    {
-      name = "DiagnosticSignWarn";
-      text = "";
-    }
-    {
-      name = "DiagnosticSignHint";
-      text = "";
-    }
-    {
-      name = "DiagnosticSignInfo";
-      text = "";
-    }
-  ];
-  diagnostics = {
-    virtual_text = true;
-    signs = {
-      active.__raw = "signs";
-    };
-    update_in_insert = true;
-    underline = false;
-    severity_sort = true;
-    float = {
-      focusable = false;
-      style = "minimal";
-      border = "rounded";
-      source = "always";
-      header = "";
-      prefix = "";
-    };
-  };
 in
 {
   programs.nixvim = {
+
+    diagnostic.settings = {
+      virtual_text = true;
+      signs = {
+        text = {
+          "__rawKey__vim.diagnostic.severity.ERROR" = "";
+          "__rawKey__vim.diagnostic.severity.WARN" = "";
+          "__rawKey__vim.diagnostic.severity.HINT" = "";
+          "__rawKey__vim.diagnostic.severity.INFO" = "";
+        };
+      };
+      update_in_insert = true;
+      underline = false;
+      severity_sort = true;
+      float = {
+        focusable = false;
+        style = "minimal";
+        border = "rounded";
+        source = "always";
+        header = "";
+        prefix = "";
+      };
+    };
 
     plugins = {
       lsp = {
@@ -65,15 +51,6 @@ in
     };
 
     extraConfigLuaPre = /*lua*/''
-      local signs = ${helpers.toLuaObject signs}
-
-      for _, sign in ipairs(signs) do
-        vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-      end
-
-      -- TODO: when diagnostics lands in 24.05, we can use it directly
-      vim.diagnostic.config(${helpers.toLuaObject diagnostics})
-
       vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
         border = "rounded",
       })
