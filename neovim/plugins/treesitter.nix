@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 let
   parsers_dir = "${config.xdg.dataHome}/treesitter/parsers";
 in
@@ -7,42 +7,31 @@ in
     plugins.treesitter = {
       enable = true;
 
-      settings = {
-        ensure_installed = [
-          "hocon"
-          "java"
-          "json"
-          "lua"
-          "markdown"
-          "markdown_inline"
-          "nix"
-          "ruby"
-          "rust"
-          "scala"
-          "toml"
-          "yaml"
-        ];
+      grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+        hocon
+        hurl
+        java
+        json
+        lua
+        markdown
+        markdown_inline
+        nix
+        ruby
+        rust
+        scala
+        toml
+        yaml
+      ];
 
+      settings = {
         parser_install_dir = "${parsers_dir}";
 
+        highlight.enable = true;
         indent.enable = true;
       };
 
     };
 
-    autoGroups = {
-      hocon = {
-        clear = true;
-      };
-    };
-
-    autoCmd = [
-      {
-        event = [ "BufNewFile" "BufRead" ];
-        pattern = [ "*/*.conf" ];
-        group = "hocon";
-        command = "set ft=hocon";
-      }
-    ];
+    filetype.pattern.".*/resources/.*%.conf" = "hocon";
   };
 }
