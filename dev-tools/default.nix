@@ -7,10 +7,10 @@
 }: {
   home.packages = with pkgs;
     [
-      alejandra
       async-profiler
       coq
       coursier
+      devenv
       dhall-lsp-server
       (fenix.stable.withComponents [
         "cargo"
@@ -26,9 +26,9 @@
       pkg-config
       sbt
       scala-cli
-      taplo
-      texlab
-      texliveMedium
+      #taplo
+      #texlab
+      #texliveMinimal
       tree-sitter
       vifm
     ]
