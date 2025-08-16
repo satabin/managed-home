@@ -61,7 +61,6 @@ in
               metals_config.capabilities.inlayHintProvider = true
 
               metals_config.on_attach = function(client, bufnr)
-                --_M.lspOnAttach(client, bufnr)
                 metals.setup_dap()
               end
 
