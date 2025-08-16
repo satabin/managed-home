@@ -13,6 +13,10 @@
     defaultSopsFile = ./secrets/tools.yaml;
   };
 
+  home.sessionVariables = {
+    LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:${pkgs.stdenv.cc.cc.lib}/lib/";
+  };
+
 
   _module.args = {
     isDesktop = true;

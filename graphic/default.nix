@@ -1,5 +1,6 @@
 {isDesktop, isWork, lib, pkgs, ...}: lib.mkIf (isDesktop && !isWork) {
   home.packages = with pkgs; [
+    ffmpeg
     (gimp-with-plugins.override {
       plugins = with gimpPlugins; [
         gap
@@ -7,6 +8,7 @@
       ];
     })
     inkscape
+    kdePackages.kdenlive
     krita
     libreoffice
     pixelorama
