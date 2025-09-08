@@ -41,12 +41,18 @@ in
           };
           dhall_lsp_server.enable = true;
           tailwindcss.enable = true;
+          jsonls.enable = true;
+          yamlls.enable = true;
+          bashls.enable = true;
+          html.enable = true;
+          ts_ls.enable = true;
+          cssls.enable = true;
         };
       };
 
       lspsaga = {
         enable = true;
-        lightbulb.enable = false;
+        settings.lightbulb.enable = false;
       };
     };
 
